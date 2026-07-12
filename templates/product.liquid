@@ -1,0 +1,188 @@
+<div class="wrap breadcrumb">
+  <a href="{{ '/' | relative_url }}">Accueil</a>
+  <span>/</span>
+  <a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
+  <span>/</span>
+  {{ product.title }}
+</div>
+
+<main class="product-main">
+  <div class="wrap product-grid">
+    <div class="gallery">
+      <div class="gallery-main">
+        <img
+          id="mainImg"
+          src="{{ product.featured_image | image_url: width: 600 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+        />
+      </div>
+      <div class="thumbs">
+        {% for image in product.images limit: 6 %}
+          <button
+            class="{% if forloop.first %}active{% endif %}"
+            data-full="{{ image | image_url: width: 600 }}"
+            aria-label="Voir image {{ forloop.index }} de {{ product.title }}"
+          >
+            <img
+              src="{{ image | image_url: width: 100 }}"
+              alt="{{ image.alt | escape }}"
+            />
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="info">
+      <span class="eyebrow info-eyebrow">{{ product.type }}</span>
+      <h1>{{ product.title }}</h1>
+
+      <div class="price-row">
+        <span class="price">{{ product.price | money }}</span>
+        <span class="note">Disponibles</span>
+      </div>
+
+      <p class="pitch">{{ product.description | strip_html | truncatewords: 30 }}</p>
+
+      <form method="POST" action="/cart/add" id="ProductForm" accept-charset="UTF-8">
+        {% if product.options.size > 0 %}
+          {% for option in product.options %}
+            {% if option.name == "Color" or option.name == "Couleur" %}
+              <div class="opt-label">
+                {{ option.name }}
+                <span class="sel" id="selColor">{{ product.selected_variant.option1 }}</span>
+              </div>
+              <div class="swatches">
+                {% for value in option.values %}
+                  <button
+                    type="button"
+                    class="swatch {% if value == product.selected_variant.option1 %}active{% endif %}"
+                    style="background:#ccc"
+                    data-name="{{ value | escape }}"
+                    aria-label="Sélectionner {{ value }}"
+                  >
+                  </button>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if option.name == "Size" or option.name == "Taille" %}
+              <div class="opt-label">
+                {{ option.name }}
+                <span class="sel" id="selSize">{{ product.selected_variant.option2 }}</span>
+              </div>
+              <div class="sizes">
+                {% for value in option.values %}
+                  <button
+                    type="button"
+                    class="size-pill {% if value == product.selected_variant.option2 %}active{% endif %}"
+                    data-option="{{ option.position }}"
+                    data-value="{{ value | escape }}"
+                  >
+                    {{ value | escape }}
+                  </button>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        <div class="buy-row">
+          <div class="qty">
+            <button type="button" id="qtyMinus" aria-label="Diminuer la quantité">
+              −
+            </button>
+            <span id="qtyVal">1</span>
+            <button type="button" id="qtyPlus" aria-label="Augmenter la quantité">
+              +
+            </button>
+          </div>
+          <input type="hidden" name="id" value="{{ product.selected_variant.id }}" />
+          <input type="hidden" name="quantity" id="quantity" value="1" />
+          <button type="submit" class="btn btn-gold" style="flex: 1; justify-content: center; padding: 1rem;">
+            Ajouter au panier — {{ product.price | money }}
+          </button>
+        </div>
+      </form>
+
+      <div class="mini-trust">
+        <div>🔒 Paiement 100% sécurisé</div>
+        <div>🧵 Matières de qualité</div>
+        <div>🎁 Idéal à offrir</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="desc-section">
+  <div class="wrap desc-grid">
+    <div>
+      <h2>Le détail qui compte</h2>
+      <p class="lede">
+        {{ product.description | strip_html }}
+      </p>
+    </div>
+    <ul>
+      {% if product.metafields.custom.features %}
+        {% assign features = product.metafields.custom.features | split: '|' %}
+        {% for feature in features %}
+          <li><span class="dot">●</span> {{ feature | strip }}</li>
+        {% endfor %}
+      {% else %}
+        <li><span class="dot">●</span> Motif design et moderne</li>
+        <li><span class="dot">●</span> Qualité premium</li>
+        <li><span class="dot">●</span> Disponible en plusieurs coloris</li>
+        <li><span class="dot">●</span> Livraison rapide</li>
+        <li><span class="dot">●</span> Satisfait ou remboursé</li>
+      {% endif %}
+    </ul>
+  </div>
+</section>
+
+<section class="cross-sell">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Complétez la panoplie</span>
+      <h2>Vous aimerez aussi</h2>
+    </div>
+    <div class="cross-grid">
+      {% for product in collections.all.products limit: 4 %}
+        {% if product.handle != page.product.handle %}
+          <a class="mini-card" href="{{ product.url }}">
+            <div class="mm">
+              <img
+                src="{{ product.featured_image | image_url: width: 300 }}"
+                alt="{{ product.featured_image.alt | escape }}"
+              />
+            </div>
+            <h4>{{ product.title | escape }}</h4>
+            <span class="p">{{ product.price | money }}</span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Quantity controls
+  let qty = 1;
+  document.getElementById('qtyMinus').addEventListener('click', () => {
+    if (qty > 1) qty--;
+    document.getElementById('qtyVal').textContent = qty;
+    document.getElementById('quantity').value = qty;
+  });
+  document.getElementById('qtyPlus').addEventListener('click', () => {
+    qty++;
+    document.getElementById('qtyVal').textContent = qty;
+    document.getElementById('quantity').value = qty;
+  });
+
+  // Size pill selection
+  document.querySelectorAll('.size-pill').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.size-pill').forEach((b) => b.classList.remove('active'));
+      e.target.classList.add('active');
+      document.getElementById('selSize').textContent = e.target.textContent;
+    });
+  });
+</script>
