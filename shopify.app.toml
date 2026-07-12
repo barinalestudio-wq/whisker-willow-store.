@@ -1,0 +1,11 @@
+locales:
+  en.default.json: English
+  fr.json: Français
+
+static_asset_cdn: true
+
+development:
+  password: {{ SHOPIFY_APP_PASSWORD }}
+  theme_store_id: null
+  store: {{ SHOPIFY_STORE }}
+  notify_updates: false
