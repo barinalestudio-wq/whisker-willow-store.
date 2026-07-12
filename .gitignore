@@ -1,0 +1,10 @@
+*
+!.gitignore
+!README.md
+!config.json
+!layout/
+!sections/
+!snippets/
+!templates/
+!assets/
+!config/
