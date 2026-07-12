@@ -1,0 +1,76 @@
+<section class="trust">
+  <div class="wrap">
+    {% for block in section.blocks %}
+      <div class="trust-item">
+        <div class="ic">{{ block.settings.icon }}</div>
+        <div>
+          <strong>{{ block.settings.title | escape }}</strong>
+          <span>{{ block.settings.description | escape }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "🎨"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Designs exclusifs"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Créés en interne, introuvables ailleurs"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Bar",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "🎨",
+            "title": "Designs exclusifs",
+            "description": "Créés en interne, introuvables ailleurs"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "🔒",
+            "title": "Paiement sécurisé",
+            "description": "Vos données sont protégées"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "🧵",
+            "title": "Qualité durable",
+            "description": "Matières sélectionnées avec soin"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
