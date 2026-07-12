@@ -1,0 +1,8 @@
+{
+  "Liquid": {
+    "include_paths": [
+      "snippets/",
+      "sections/"
+    ]
+  }
+}
