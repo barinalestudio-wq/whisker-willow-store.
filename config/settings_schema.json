@@ -1,0 +1,24 @@
+[
+  {
+    "name": "theme",
+    "label": "Theme",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#17281D"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color",
+        "default": "#C9932F"
+      }
+    ]
+  }
+]
