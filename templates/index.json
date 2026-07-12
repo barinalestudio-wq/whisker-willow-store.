@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Petite marque, grand amour 🐾",
+        "title": "Pour ceux qui aiment",
+        "highlight": "un chien",
+        "title_suffix": "plus que de raison.",
+        "description": "<p>Des t-shirts, mugs et accessoires dessinés pour les vrais amoureux des chiens — matières douces, designs exclusifs, faits pour durer autant que votre attachement à votre compagnon.</p>",
+        "cta1_link": "/collections/all",
+        "cta1_text": "Découvrir la collection",
+        "cta2_link": "#valeurs",
+        "cta2_text": "Notre histoire",
+        "price_label": "Dès 14$",
+        "price_sublabel": "Toute la collection",
+        "rating": "⭐ Designs originaux"
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "trust-1": {
+          "type": "item",
+          "settings": {
+            "icon": "🎨",
+            "title": "Designs exclusifs",
+            "description": "Créés en interne, introuvables ailleurs"
+          }
+        },
+        "trust-2": {
+          "type": "item",
+          "settings": {
+            "icon": "🔒",
+            "title": "Paiement sécurisé",
+            "description": "Vos données sont protégées"
+          }
+        },
+        "trust-3": {
+          "type": "item",
+          "settings": {
+            "icon": "🧵",
+            "title": "Qualité durable",
+            "description": "Matières sélectionnées avec soin"
+          }
+        }
+      }
+    },
+    "featured": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "La collection",
+        "title": "Cinq pièces, un seul amour",
+        "description": "Chaque produit est pensé pour celles et ceux qui ne conçoivent pas la vie sans leur chien à leurs côtés.",
+        "collection": "all",
+        "products_limit": 5
+      }
+    },
+    "values": {
+      "type": "values",
+      "blocks": {
+        "value-1": {
+          "type": "value",
+          "settings": {
+            "label": "Notre matière première",
+            "title": "Dessiné avec soin",
+            "description": "<p>Chaque motif est créé en interne, pensé pour les amoureux des chiens qui veulent porter quelque chose de sincère — pas un cliché de plus.</p>"
+          }
+        },
+        "value-2": {
+          "type": "value",
+          "settings": {
+            "label": "Notre exigence",
+            "title": "Des matières qui durent",
+            "description": "<p>Coton doux, céramique épaisse, toile résistante : on choisit des matières pensées pour accompagner votre quotidien, lavage après lavage.</p>"
+          }
+        },
+        "value-3": {
+          "type": "value",
+          "settings": {
+            "label": "Notre taille",
+            "title": "Petite marque, vraie attention",
+            "description": "<p>Whisker & Willow démarre tout juste — chaque commande compte, et chaque client a toute notre attention.</p>"
+          }
+        }
+      }
+    },
+    "cta": {
+      "type": "cta-strip",
+      "settings": {
+        "title": "Trouvez la pièce qui parle pour votre chien.",
+        "link": "/collections/all",
+        "button_text": "Voir toute la collection"
+      }
+    }
+  },
+  "order": ["hero", "trust", "featured", "values", "cta"]
+}
