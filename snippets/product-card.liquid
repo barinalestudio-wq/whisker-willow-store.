@@ -1,0 +1,39 @@
+<article class="card reveal">
+  <div class="card-media">
+    {% if product.metafields.custom.badge %}
+      <span class="tag">{{ product.metafields.custom.badge }}</span>
+    {% else %}
+      <span class="tag">Nouveau</span>
+    {% endif %}
+    <a
+      href="{{ product.url }}"
+      aria-label="Voir {{ product.title }}"
+    >
+      <img
+        class="img-a"
+        src="{{ product.featured_image | image_url: width: 500 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+      />
+      {% if product.images[1] %}
+        <img
+          class="img-b"
+          src="{{ product.images[1] | image_url: width: 500 }}"
+          alt="{{ product.images[1].alt | escape }}"
+        />
+      {% endif %}
+    </a>
+  </div>
+  <div class="card-body">
+    <h3><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+    <p class="hook">{{ product.metafields.custom.short_description | default: product.description | strip_html | truncatewords: 10 }}</p>
+    <div class="card-foot">
+      <span class="price">
+        <span class="from">Dès</span>
+        {{ product.price_min | money }}
+      </span>
+      <a class="add-btn" href="{{ product.url }}" aria-label="Voir {{ product.title }}">
+        +
+      </a>
+    </div>
+  </div>
+</article>
